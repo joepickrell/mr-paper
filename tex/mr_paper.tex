@@ -1,0 +1,123 @@
+
+\documentclass[11pt,titlepage]{article} 
+\usepackage[square,sort&compress,numbers]{natbib}
+%\usepackage[round]{natbib} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{longtable}
+
+\usepackage{caption}
+\captionsetup{labelsep = none}
+\usepackage{graphicx,rotating}
+
+\usepackage{setspace}
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}
+%\bibliographystyle{elsart-harv}
+
+%\bibliographystyle{JRSS}
+\bibliographystyle{genres}
+%\usepackage[margin=1in]{geometry}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\doublespacing
+\renewcommand{\rmdefault}{ptm} 
+\usepackage{mathptmx} 
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage[margin=1in]{geometry}
+\renewcommand{\baselinestretch}{1.05}    %or 1.4 maybe?
+%\setlength{\oddsidemargin}{0cm} \setlength{\textwidth}{6.5in}
+%\setlength{\topmargin}{0in} \setlength{\topmargin}{-.5in}
+
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+%this version seems to work better for pdf (?)
+\setlength{\textheight}{9.5in}
+%%
+%% Select one of the two - the second gets rid of comments.
+%% Leave the blank lines in
+\def\comment#1{
+
+\smallskip\noindent{\it [{#1}]}
+
+\smallskip\noindent
+}
+%\def\comment#1{}
+
+
+\begin{document}
+\title{Fulfilling the promise of Mendelian randomization}
+\author{Joseph K. Pickrell$^{\dagger 1,2}$\\ \\
+\small $^1$ New York Genome Center, New York, NY\\
+\small $^2$ Department of Biological Sciences, Columbia University, New York, NY \\
+\small $^\dagger$ Correspondence to: \url{jkpickrell@nygenome.org}
+}
+\maketitle
+\clearpage
+\section{Introduction}
+Many important questions in medicine involve questions about \emph{causality}. For example, do low levels of high-density lipoproteins (HDL) cause heart disease? Does high body mass index (BMI) cause type 2 diabetes? Or are these traits simply correlated in the population for other reasons? The gold standard study design for answering this type of question is the randomized controlled trial, which requires identifying an intervention that influences the potential causal factor (for example a drug), randomly assigning individuals to receive the intervention, and monitoring outcomes. In this study design, the use of randomization allows one to isolate the causal effect of a single variable (e.g. the drug) from the effects of potential confounding variables. However, randomized controlled trials are sometimes impractical (for example, no intervention may exist), expensive, or indeed unethical (for a tongue-in-cheek example, see \citet{Smith:2003aa}). 
+
+In the absence of a randomized trial, some hints about the causal relationship between traits can come from observational epidemiology. If two variables are correlated in the population (e.g. low HDL cholesterol is correlated with higher risk of heart disease \citep{Gordon:1977aa}) then this might indicate a relationship worth examining further. On the other hand, observational correlations are potentially confounded by a large number of factors (e.g. \citet{Taubes:1995aa} and references therein), and following up non-causal relationships with randomized controlled trials leads to large investments of time and money with little payoff. Classic examples of this problem include trials of hormone replacement therapy in cardiovascular disease \citep{Rossouw:2002aa} or beta-carotene in lung cancer \cite{:1994ab}.
+
+A useful attack on the problem of confounding in observational epidemiology comes from genetics, and is now called ``Mendelian randomization" (the method is generally attributed to \citet{Katan:1986aa}, but see \citet{Katan:2004aa}). The intuition is as follows: if two traits are causally related, a genetic variant that influences the first trait (for example, BMI) is expected to have a ``knock-on" effect on the second trait (for example, type 2 diabetes), while this is not the case if the two traits are correlated for other reasons. Since genetic variants are inherited at conception and (to a first approximation) do not change over the course of an individual's lifetime, the random inheritance of a genetic variant acts like the randomization in a clinical trial to help avoid the effects of confounding. In the simplest form, Mendelian randomization thus simply involves testing to see if a genetic variant has effects on two traits \citep{Katan:1986aa}. More elaborate methods allow one to estimate the magnitude of the causal effect of one trait on the other, and to include multiple genetic variants; for more in-depth description of the statistical methodology, see \citet{Didelez:2007aa, VanderWeele:2014aa} and  \citet{Davey-Smith:2014aa}. 
+
+The Mendelian randomization approach is now extremely popular (e.g. \citep{Pichler:2013aa, Voight:2012aa, Holmes:2014aa, Lim:2014aa, De-Silva:2011aa, Welsh:2010aa, Fall:2013aa, Holmes:2014ab, Klerk:2002aa, Casas:2005aa, C-Reactive-Protein-Coronary-Heart-Disease-Genetics-Collaboration-CCGC:2011aa}). For example, this approach has recently been used to argue that alcohol consumption increases risk of heart disease \citep{Holmes:2014ab}, and that increasing serum iron levels decreases risk of Parkinson's disease \citep{Pichler:2013aa}. These findings have potentially important public health implications. 
+
+However, it is well-known that causal inference using Mendelian randomization requires strong assumptions about the physiological mechanisms by which genetic variants exert their effects (\citep{Davey-Smith:2014aa, VanderWeele:2014aa}. Specifically, if a genetic variant influences two phenotypes through different mechanisms, then Mendelian randomization will give misleading results. For example, a genetic variant in the gene LGR4 influences both bone mineral density and risk of gallbladder cancer \citep{Styrkarsdottir:2013aa}, but it seems implausible to suggest that low bone mineral density causes cancer. Instead, it seems more likely that this genetic variant alters some molecular pathway (or multiple pathways) that is important for both phenotypes. Here, we describe two pieces of evidence that make us moderately skeptical of most of the causal claims made to date using Mendelian randomization, and suggest some ways forward. 
+  
+\section{Two reasons for skepticism}
+The first reason for skepticism is that in the nearly 30 years of Mendelian randomization, arguably no new causal relationship has been identified with this approach and subsequently verified in a randomized controlled trial. We assembled a list of 29 applications of Mendelian randomization from two recent reviews \citep{Davey-Smith:2014aa, burgess2015mendelian} (Supplementary Table 1). Of these 29 pairs of traits, we identified five that were also targets of randomized controlled trials. In nearly all of these case, the Mendelian randomization study was performed \emph{after} the randomized controlled trial, and generally confirmed the results of the trial (Table \ref{t_table}). For example, Mendelian randomization studies have provided additional evidence that BMI causally influences atherosclerosis \cite{Kivimaki:2008ab}, and that HDL levels do not appear to causally influence risk of cardiovascular disease \cite{Voight:2012aa}. These studies have provided important, independent evidence about the relationships between these traits, but it seems the most rigorous test of the Mendelian randomization methodology would be to identify a new causal relationship and then to subsequently confirm it with a controlled trial.  
+
+The one case where Mendelian randomization provided support for a causal relationship prior to the publication of a randomized controlled trial was the case of homocysteine levels and stroke \citep{Casas:2005aa}. This study inferred that increased homocysteine levels cause higher stroke risk. However, randomized controlled trials of folic acid (which reduces levels of circulating homocysteine) have produced conflicting results \citep{Huo:2015aa, Study-of-the-Effectiveness-of-Additional-Reductions-in-Cholesterol-and-Homocysteine-SEARCH-Collaborative-Group:2010aa}. There are a number of potential explanations for this (indeed, the robustness of the Mendelian randomization study has been questioned \citep{Lewis:2005aa}), but overall the track record of Mendelian randomization is sparse. 
+
+The second reason for skepticism is more fundamental. Specifically, one of the core assumptions when using Mendelian randomization to infer causality is that the genetic variants used in the study have a direct effect on one trait (the ``causal" trait), but only an indirect effect on the other (the ``caused" trait). That is, the genetic variants used in the study are assumed to have no influence on confounding factors that influences both traits. This is often referred to as an assumption of no ``pleiotropy" \citep{Davey-Smith:2014aa}. However, it is difficult to know \emph{a priori} whether this assumption is valid, and recent work in human genetics has shown that genetic variants often have effects on different traits. For example, genetic variants that influence one autoimmune disease also often influence others \citep{Cotsapas:2011aa}, and variants that influence one lipid trait also often influence other lipid traits \citep{teslovich2010biological}. This is not limited to traits that are intuitively related, however--large genome-wide association studies are finding that genetic variants often influence many aspects of physiology \citep{bulik2015atlas}. For example, genetic variants that influence HDL cholesterol levels have correlated effects on whether an individual went to college \citep{bulik2015atlas}; a naive interpretation of this might suggest the (rather nonsensical) conclusion that HDL-raising drugs should increase education levels.
+
+It is sometimes suggested that using a large number of genetic variants in Mendelian randomization (combined into a single score) offers a way to partially avoid this problem (e.g. \citep{Holmes:2014aa, Davey-Smith:2014aa}). To test this, we performed simulations of such an approach in a situation where two traits are not in fact causally related (Figure \ref{f_sim}A, see Supplementary Information for details). We found that even a small number of pleiotropic loci (those that influence a confounding variable) leads to false positives, and that this problem grows worse as sample sizes increase (Figure \ref{f_sim}B). In empirical data, this effect has been seen by \citet{Evans:2013aa}, who noted that a related approach identified several apparently spurious causal relationships between traits. Before making a strong causal conclusion from a Mendelian randomization study, then, it seems necessary to have a good molecular and physiological understanding of the effects of all the genetic variants used in the study. For many traits of interest, our understanding of biology is not strong enough for this to be reasonable.
+
+\section{Fulfilling the promise of Mendelian randomization}
+The principle of Mendelian randomization, however, remains tremendously promising. What are the ways forward? One possibility is to treat negative results from Mendelian randomization with more confidence than positive results--if two traits are correlated in the population but a Mendelian randomization study suggests they are not causally related, this is evidence that the population-level correlation is driven by some unobserved confounder \citep{VanderWeele:2014aa}. Another approach might be to focus on developing a detailed molecular understanding of variants in an individual gene and their downstream physiological effects; this approach is particularly useful if the gene is a potential drug target \citep{Plenge:2013aa}. Finally, another possibility comes from the ongoing development of new statistical methods like bi-directional Mendelian randomization (e.g. \citep{Timpson:2011aa, Vimaleswaran:2013aa}), which use many genetic variants to increase the robustness of causal inference. These methods are currently in early stages of development and evaluation. Until they reach maturity, reports of causal relationships identified through Mendelian randomization should be treated with the same skepticism as such claims made from observational epidemiology. 
+
+\clearpage
+
+\begin{table}[htdp]
+\caption{: List of causal relationships evaluated by Mendelian randomization and randomized controlled trials, compiled from Table 1 of \citet{Davey-Smith:2014aa} and Table 1 of \citet{burgess2015mendelian}. For the complete list of studies, see Supplementary Table 1. MR = Mendelian randomization, RCT = randomized controlled trial.}
+\begin{center}
+\begin{footnotesize}
+\tabcolsep=0.11cm
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Trait & Outcome & MR effect & Reference & RCT effect & Reference & Performed first \\
+\hline
+cholesterol levels & cancer & None & \cite{Trompet:2009aa}  & None & \cite{Dale:2006aa} & RCT \\
+HDL cholesterol & myocardial infarction & None & \cite{Voight:2012aa} &  None & \cite{Barter:2007aa} & RCT \\
+homocysteine & stroke & + &  \cite{Casas:2005aa} & Conflicting & \cite{Huo:2015aa, Study-of-the-Effectiveness-of-Additional-Reductions-in-Cholesterol-and-Homocysteine-SEARCH-Collaborative-Group:2010aa} & MR \\
+BMI & cartoid thickness & + & \cite{Kivimaki:2008ab} & + & \citep{Shai:2010aa, Hjerkinn:2006aa} & RCT \\
+interuterine folate & neural tube defects & -& \cite{Smith:2003ab} &  - & \cite{mrc1991prevention} &RCT \\
+\hline
+\end{tabular}
+\end{footnotesize}
+\end{center}
+\label{default} \label{t_table}
+\end{table}% table of all MR claims from 2 papers
+
+
+ \clearpage
+\begin{figure}
+\begin{center}
+\includegraphics[scale = 0.8]{ff.pdf}
+\caption{ \textbf{. Simulations of Mendelian randomization in the absence of a causal relationship between a trait and a disease. A. Simulated scenario.} For each simulation, we simulated 100 genetic variants (G), which either 1) influence a trait or 2) influence both the trait and the disease, with proportions $1-p$ and $p$, respectively. Arrows represent causal relationships \citep{pearl2000causality}. The confounders are not directly simulated; see Supplementary Material for details. \textbf{B. Probability of incorrectly inferring a causal relationship between a trait and a disease in this situation.} We simulated Mendelian randomization studies with different sample sizes and values of $p$, and in each simulation tested for a causal relationship between the trait and the disease. Each point shows the proportion of 1,000 independent simulations where the causal effect of the trait on the disease was ``significant" as judged by $P < 0.05$. In all simulations, we assumed that the effects of a variant on the trait and on the disease are uncorrelated; see Figure S1 for simulations where these effect sizes are correlated.}\label{f_sim}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\section{Acknowledgements.} 
+We thank Molly Przeworski for helpful comments on an earlier draft of this manuscript.
+
+\bibliography{../../Bib/bib}
+\end{document}
